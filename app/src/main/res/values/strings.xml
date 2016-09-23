@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MessageCopy</string>
+    <string name="service_content">开启备份服务</string>
 </resources>
