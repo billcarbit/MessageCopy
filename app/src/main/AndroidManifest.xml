@@ -15,6 +15,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RulesActivity">
+
+        </activity>
+
+
         <service
             android:enabled="true"
             android:exported="true"
