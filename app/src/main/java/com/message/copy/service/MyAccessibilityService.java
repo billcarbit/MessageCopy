@@ -1,6 +1,7 @@
 package com.message.copy.service;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Intent;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -10,13 +11,39 @@ import java.util.List;
  * Created by bill.wang on 2016/9/23.
  */
 public class MyAccessibilityService extends AccessibilityService {
-    public final static String TAG = MyAccessibilityService.class.getSimpleName();
+    private static final String TAG = "MyAccessibilityService";
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.e(TAG, "onCreate: ");
+    }
+
+    @Override
+    protected void onServiceConnected() {
+        super.onServiceConnected();
+        Log.e(TAG, "onServiceConnected: ");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e(TAG, "onStartCommand: ");
+        return super.onStartCommand(intent, flags, startId);
+
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Log.e(TAG, "onUnbind: " );
+        return super.onUnbind(intent);
+    }
+
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         int eventType = event.getEventType();
         switch (eventType) {
-            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED:
+            case AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED://红包主体弹框,未打开
                 Log.d(TAG, "TYPE_WINDOW_STATE_CHANGED");
                 break;
             case AccessibilityEvent.TYPE_GESTURE_DETECTION_START:
@@ -43,7 +70,7 @@ public class MyAccessibilityService extends AccessibilityService {
             case AccessibilityEvent.TYPE_VIEW_FOCUSED:
                 Log.d(TAG, "TYPE_VIEW_FOCUSED");
                 break;
-            case AccessibilityEvent.TYPE_VIEW_SCROLLED:
+            case AccessibilityEvent.TYPE_VIEW_SCROLLED://有红包过来
                 Log.d(TAG, "TYPE_VIEW_SCROLLED");
                 break;
             case AccessibilityEvent.TYPE_VIEW_LONG_CLICKED:
@@ -78,6 +105,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
     @Override
     public void onInterrupt() {
+        Log.e(TAG, "onInterrupt: ");
 
     }
 }
